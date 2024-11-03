@@ -1,9 +1,9 @@
 FROM public.ecr.aws/bitnami/node:14 AS builder 
 RUN mkdir -p webapp 
 WORKDIR /webapp 
-COPY webapp/package.json .
+COPY webapp/package.json /webapp 
 RUN npm install 
-COPY ..
+COPY /webapp /webapp 
 RUN npm run build 
 
 FROM public.ecr.aws/nginx/nginx:latest
